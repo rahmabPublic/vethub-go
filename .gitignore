@@ -1,0 +1,21 @@
+# Go
+server/vethub-go
+*.exe
+*.test
+*.out
+
+# Dependencies
+client/node_modules/
+
+# Build output
+client/.svelte-kit/
+client/build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,383 @@
+@import "tailwindcss";
+
+/*
+ * ilionx Paws - ilionx Brand Design System
+ * Light mode only - clean, professional veterinary clinic feel
+ * Primary: ilionx Red (#E8003D)
+ * Typography: Poppins (body - prefer lighter weights), JetBrains Mono (code)
+ * Brand values: Helder (clear), Menselijk (human), Kwalitatief (quality)
+ */
+
+:root {
+  /* Border Radius */
+  --radius: 0.625rem;
+
+  /* ilionx Brand Colors - Light Mode */
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(0 0% 25%);
+
+  /* Card - Clean white with subtle shadow */
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(0 0% 25%);
+
+  /* Popover */
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(0 0% 25%);
+
+  /* Primary - ilionx Red (#E8003D) */
+  --primary: hsl(344 100% 45%);
+  --primary-foreground: hsl(0 0% 100%);
+
+  /* Secondary - Soft gray */
+  --secondary: hsl(0 0% 96%);
+  --secondary-foreground: hsl(0 0% 25%);
+
+  /* Muted - Light gray backgrounds */
+  --muted: hsl(0 0% 96%);
+  --muted-foreground: hsl(0 0% 42%);
+
+  /* Accent - Teal for highlights (veterinary/medical feel) */
+  --accent: hsl(175 70% 40%);
+  --accent-foreground: hsl(0 0% 100%);
+
+  /* Destructive - Error red */
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 100%);
+
+  /* Success - Green for positive actions */
+  --success: hsl(142 76% 36%);
+  --success-foreground: hsl(0 0% 100%);
+
+  /* Warning - Amber for caution */
+  --warning: hsl(38 92% 50%);
+  --warning-foreground: hsl(0 0% 15%);
+
+  /* Borders */
+  --border: hsl(0 0% 88%);
+  --input: hsl(0 0% 88%);
+  --ring: hsl(344 100% 45%);
+
+  /* Chart Colors */
+  --chart-1: hsl(344 100% 45%);
+  --chart-2: hsl(175 70% 40%);
+  --chart-3: hsl(45 90% 55%);
+  --chart-4: hsl(220 70% 50%);
+  --chart-5: hsl(280 60% 50%);
+
+  /* Sidebar */
+  --sidebar: hsl(0 0% 98%);
+  --sidebar-foreground: hsl(0 0% 25%);
+  --sidebar-primary: hsl(344 100% 45%);
+  --sidebar-primary-foreground: hsl(0 0% 100%);
+  --sidebar-accent: hsl(0 0% 94%);
+  --sidebar-accent-foreground: hsl(0 0% 25%);
+  --sidebar-border: hsl(0 0% 88%);
+  --sidebar-ring: hsl(344 100% 45%);
+}
+
+/* Tailwind Theme Integration */
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Custom success/warning colors */
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+
+  /* Typography */
+  --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* Base Styles */
+@layer base {
+  * {
+    border-color: var(--border);
+    outline-color: color-mix(in srgb, var(--ring) 50%, transparent);
+  }
+  
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-weight: 300; /* Light weight as brand default */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1 {
+    font-weight: 200; /* ExtraLight for large headings */
+    letter-spacing: -0.025em;
+  }
+
+  h2 {
+    font-weight: 300; /* Light for section headings */
+    letter-spacing: -0.02em;
+  }
+
+  h3, h4, h5, h6 {
+    font-weight: 500; /* Medium for smaller headings */
+    letter-spacing: -0.015em;
+  }
+
+  code, pre {
+    font-family: var(--font-mono);
+    font-weight: 300;
+  }
+}
+
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animation Utility Classes */
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.4s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.2s ease-out;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Card Styles - Using plain CSS instead of @apply */
+.card {
+  background-color: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.card-hover {
+  background-color: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  transition: box-shadow 0.15s ease-in-out;
+}
+
+.card-hover:hover {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* Button Variants - Using plain CSS */
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  transition: background-color 0.15s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: color-mix(in srgb, var(--primary) 90%, black);
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  transition: background-color 0.15s ease-in-out;
+}
+
+.btn-secondary:hover {
+  background-color: color-mix(in srgb, var(--secondary) 80%, black);
+}
+
+.btn-outline {
+  border: 1px solid var(--border);
+  background-color: transparent;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.btn-outline:hover {
+  background-color: var(--secondary);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.btn-ghost:hover {
+  background-color: var(--secondary);
+}
+
+.btn-destructive {
+  background-color: var(--destructive);
+  color: var(--destructive-foreground);
+  transition: background-color 0.15s ease-in-out;
+}
+
+.btn-destructive:hover {
+  background-color: color-mix(in srgb, var(--destructive) 90%, black);
+}
+
+/* Focus Ring */
+.focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+}
+
+/* Form Input Styles */
+.input-base {
+  width: 100%;
+  border-radius: 0.375rem;
+  border: 1px solid var(--input);
+  background-color: var(--background);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.input-base::placeholder {
+  color: var(--muted-foreground);
+}
+
+.input-base:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+}
+
+.input-base:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Table Styles */
+.table-header {
+  background-color: color-mix(in srgb, var(--muted) 50%, transparent);
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.table-row {
+  border-bottom: 1px solid var(--border);
+  transition: background-color 0.15s ease-in-out;
+}
+
+.table-row:hover {
+  background-color: color-mix(in srgb, var(--muted) 50%, transparent);
+}
+
+/* Status Badge Styles */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  padding: 0.125rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.badge-primary {
+  background-color: color-mix(in srgb, var(--primary) 10%, transparent);
+  color: var(--primary);
+}
+
+.badge-success {
+  background-color: color-mix(in srgb, var(--success) 10%, transparent);
+  color: var(--success);
+}
+
+.badge-warning {
+  background-color: color-mix(in srgb, var(--warning) 10%, transparent);
+  color: var(--warning);
+}
+
+.badge-destructive {
+  background-color: color-mix(in srgb, var(--destructive) 10%, transparent);
+  color: var(--destructive);
+}
+
+.badge-muted {
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+}
+
+/* Stagger Animation Delays */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
