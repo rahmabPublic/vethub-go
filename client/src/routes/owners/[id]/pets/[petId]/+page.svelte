@@ -17,12 +17,12 @@
 		Stethoscope
 	} from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
+	import { getPetPictureSrc } from '$lib/utils/petPicture';
 
 	let pet = $state<PetResponse | null>(null);
 	let loading = $state(true);
 	let deleteDialogOpen = $state(false);
 	let deleting = $state(false);
-	const camelImageSrc = '/pet-camel.svg';
 
 	const ownerId = $derived(Number($page.params.id));
 	const petId = $derived(Number($page.params.petId));
@@ -75,6 +75,10 @@
 		return years === 1 ? '1 year old' : `${years} years old`;
 	}
 
+	function petImageSrc(): string | null {
+		return getPetPictureSrc(pet?.id, pet?.type?.name);
+	}
+
 	// Load pet on mount and when IDs change
 	$effect(() => {
 		if (ownerId && petId) {
@@ -112,9 +116,9 @@
 			<Card.Header>
 				<div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
 					<div class="flex items-center gap-4">
-						{#if pet.type?.name?.toLowerCase() === 'camel'}
+						{#if petImageSrc()}
 							<img
-								src={camelImageSrc}
+								src={petImageSrc()!}
 								alt={pet.name}
 								class="h-16 w-16 rounded-full border object-cover"
 							/>

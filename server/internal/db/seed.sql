@@ -52,6 +52,7 @@ INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (8, 'Max', '20
 INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (9, 'Lucky', '2021-08-06', 5, 7);
 INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (10, 'Mulligan', '2007-02-24', 2, 8);
 INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (11, 'Camel', '2021-05-12', 7, 9);
+INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (12, 'Slyther', '2022-02-14', 4, 11);
 
 -- Visits
 INSERT INTO visits (id, pet_id, date, description) VALUES (1, 7, '2023-01-01', 'Rabies shot');

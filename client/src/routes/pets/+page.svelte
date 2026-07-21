@@ -7,11 +7,11 @@
 	import * as Table from '$lib/components/ui/table';
 	import { PawPrint, Search } from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
+	import { getPetPictureSrc } from '$lib/utils/petPicture';
 
 	let pets = $state<PetResponse[]>([]);
 	let loading = $state(true);
 	let searchQuery = $state('');
-	const camelImageSrc = '/pet-camel.svg';
 
 	let filteredPets = $derived(() => {
 		if (!searchQuery.trim()) return pets;
@@ -98,9 +98,9 @@
 						<Table.Row class="hover:bg-muted/50">
 							<Table.Cell class="font-medium">
 								<div class="flex items-center gap-3">
-									{#if pet.type?.name?.toLowerCase() === 'camel'}
+									{#if getPetPictureSrc(pet.id, pet.type?.name)}
 										<img
-											src={camelImageSrc}
+											src={getPetPictureSrc(pet.id, pet.type?.name)!}
 											alt={pet.name}
 											class="h-10 w-10 rounded-md border object-cover"
 										/>

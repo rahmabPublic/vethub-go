@@ -6,12 +6,20 @@
 	import type { PetResponse, PetTypeResponse, UpdatePetRequest } from '$lib/api/models';
 	import PetForm from '$lib/components/pets/PetForm.svelte';
 	import { Button } from '$lib/components/ui/button';
+	import { Input } from '$lib/components/ui/input';
 	import { ArrowLeft, PawPrint } from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
+	import {
+		getPetPictureSrc,
+		hasCustomPetPicture,
+		removePetPicture,
+		setPetPictureFromFile
+	} from '$lib/utils/petPicture';
 
 	let pet = $state<PetResponse | null>(null);
 	let petTypes = $state<PetTypeResponse[]>([]);
 	let loading = $state(true);
+	let pictureUpdating = $state(false);
 
 	const ownerId = $derived(Number($page.params.id));
 	const petId = $derived(Number($page.params.petId));
@@ -56,6 +64,31 @@
 		}
 	}
 
+	async function handlePictureChange(event: Event) {
+		const target = event.currentTarget as HTMLInputElement;
+		const file = target.files?.[0];
+		if (!file || !pet) return;
+
+		pictureUpdating = true;
+		try {
+			await setPetPictureFromFile(pet.id, file);
+			toast.success('Pet picture updated');
+		} catch (err) {
+			toast.error(err instanceof Error ? err.message : 'Failed to update pet picture');
+		} finally {
+			pictureUpdating = false;
+			target.value = '';
+		}
+	}
+
+	function handleRemovePicture() {
+		if (!pet) return;
+		pictureUpdating = true;
+		removePetPicture(pet.id);
+		toast.success('Pet picture removed');
+		pictureUpdating = false;
+	}
+
 	// Load data on mount
 	$effect(() => {
 		if (ownerId && petId) {
@@ -91,6 +124,44 @@
 			<p class="text-muted-foreground">Pet not found</p>
 		</div>
 	{:else}
+		<div class="card mb-6 p-6">
+			<div class="mb-4 flex items-center gap-4">
+				{#if getPetPictureSrc(pet.id, pet.type?.name)}
+					<img
+						src={getPetPictureSrc(pet.id, pet.type?.name)!}
+						alt={pet.name}
+						class="h-20 w-20 rounded-full border object-cover"
+					/>
+				{:else}
+					<div class="flex h-20 w-20 items-center justify-center rounded-full bg-accent/10">
+						<PawPrint class="h-9 w-9 text-accent" />
+					</div>
+				{/if}
+				<div>
+					<h2 class="font-semibold">Pet Picture</h2>
+					<p class="text-sm text-muted-foreground">Upload a JPG, PNG, or WebP (max 5 MB)</p>
+				</div>
+			</div>
+
+			<div class="flex flex-wrap items-center gap-3">
+				<Input
+					type="file"
+					accept="image/jpeg,image/png,image/webp"
+					onchange={handlePictureChange}
+					disabled={pictureUpdating}
+					class="max-w-xs"
+				/>
+				<Button
+					type="button"
+					variant="outline"
+					onclick={handleRemovePicture}
+					disabled={pictureUpdating || !hasCustomPetPicture(pet.id)}
+				>
+					Remove Picture
+				</Button>
+			</div>
+		</div>
+
 		<div class="card p-6">
 			<PetForm
 				name={pet.name}
