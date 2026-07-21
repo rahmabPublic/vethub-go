@@ -22,6 +22,7 @@
 	let loading = $state(true);
 	let deleteDialogOpen = $state(false);
 	let deleting = $state(false);
+	const camelImageSrc = '/pet-camel.svg';
 
 	const ownerId = $derived(Number($page.params.id));
 	const petId = $derived(Number($page.params.petId));
@@ -111,9 +112,17 @@
 			<Card.Header>
 				<div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
 					<div class="flex items-center gap-4">
-						<div class="flex h-16 w-16 items-center justify-center rounded-full bg-accent/10">
-							<PawPrint class="h-8 w-8 text-accent" />
-						</div>
+						{#if pet.type?.name?.toLowerCase() === 'camel'}
+							<img
+								src={camelImageSrc}
+								alt={pet.name}
+								class="h-16 w-16 rounded-full border object-cover"
+							/>
+						{:else}
+							<div class="flex h-16 w-16 items-center justify-center rounded-full bg-accent/10">
+								<PawPrint class="h-8 w-8 text-accent" />
+							</div>
+						{/if}
 						<div>
 							<Card.Title class="text-2xl">{pet.name}</Card.Title>
 							<div class="flex items-center gap-2 mt-1">

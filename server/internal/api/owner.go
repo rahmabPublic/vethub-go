@@ -42,6 +42,29 @@ var (
 	emailRegex = regexp.MustCompile(`^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$`)
 )
 
+const ownerPictureMaxBytes int64 = 5 * 1024 * 1024
+
+func validateOwnerPicture(contentType string, sizeBytes int64) *string {
+	normalizedType := strings.TrimSpace(strings.Split(strings.ToLower(contentType), ";")[0])
+	switch normalizedType {
+	case "image/jpeg", "image/png", "image/webp":
+	default:
+		msg := "picture must be a JPG, PNG, or WebP image"
+		return &msg
+	}
+
+	if sizeBytes <= 0 {
+		msg := "picture file must not be empty"
+		return &msg
+	}
+	if sizeBytes > ownerPictureMaxBytes {
+		msg := "picture file size must be at most 5 MB"
+		return &msg
+	}
+
+	return nil
+}
+
 func validateOwner(req *CreateOwnerRequest) *string {
 	if strings.TrimSpace(req.FirstName) == "" {
 		msg := "firstName is required"

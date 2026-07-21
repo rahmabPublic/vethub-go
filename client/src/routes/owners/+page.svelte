@@ -7,6 +7,7 @@
 	import * as Table from '$lib/components/ui/table';
 	import { Users, Plus, Search, Phone, MapPin, Mail, PawPrint } from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
+	import { getOwnerAvatarSrc } from '$lib/utils/ownerAvatar';
 
 	let owners = $state<OwnerResponse[]>([]);
 	let loading = $state(true);
@@ -109,8 +110,13 @@
 					{#each filteredOwners() as owner (owner.id)}
 						<Table.Row class="hover:bg-muted/50">
 							<Table.Cell>
-								<a href="/owners/{owner.id}" class="font-medium text-foreground hover:text-primary">
-									{owner.firstName} {owner.lastName}
+								<a href="/owners/{owner.id}" class="flex items-center gap-3 text-foreground hover:text-primary">
+									<img
+										src={getOwnerAvatarSrc(owner.id)}
+										alt={`${owner.firstName} ${owner.lastName}`}
+										class="h-9 w-9 rounded-full border object-cover"
+									/>
+									<span class="font-medium">{owner.firstName} {owner.lastName}</span>
 								</a>
 							</Table.Cell>
 							<Table.Cell>

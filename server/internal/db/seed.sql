@@ -5,6 +5,7 @@ INSERT INTO pet_types (id, name) VALUES (3, 'Lizard');
 INSERT INTO pet_types (id, name) VALUES (4, 'Snake');
 INSERT INTO pet_types (id, name) VALUES (5, 'Bird');
 INSERT INTO pet_types (id, name) VALUES (6, 'Hamster');
+INSERT INTO pet_types (id, name) VALUES (7, 'Camel');
 
 -- Specialties
 INSERT INTO specialties (id, name) VALUES (1, 'Radiology');
@@ -37,6 +38,7 @@ INSERT INTO owners (id, first_name, last_name, address, city, telephone, email) 
 INSERT INTO owners (id, first_name, last_name, address, city, telephone, email) VALUES (8, 'Maria', 'Escobito', '345 Maple St.', 'Madison', '6085557683', 'maria.escobito@example.com');
 INSERT INTO owners (id, first_name, last_name, address, city, telephone, email) VALUES (9, 'David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435', 'david.schroeder@example.com');
 INSERT INTO owners (id, first_name, last_name, address, city, telephone, email) VALUES (10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487', 'carlos.estaban@example.com');
+INSERT INTO owners (id, first_name, last_name, address, city, telephone, email) VALUES (11, 'William', 'Clown', '17 Circus Lane', 'Madison', '6085558899', 'william.clown@example.com');
 
 -- Pets
 INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (1, 'Leo', '2020-09-07', 1, 1);
@@ -49,9 +51,7 @@ INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (7, 'Samantha'
 INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (8, 'Max', '2022-09-04', 1, 6);
 INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (9, 'Lucky', '2021-08-06', 5, 7);
 INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (10, 'Mulligan', '2007-02-24', 2, 8);
-INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (11, 'Freddy', '2020-03-09', 5, 9);
-INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (12, 'Lucky', '2020-06-24', 2, 10);
-INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (13, 'Sly', '2022-06-08', 1, 10);
+INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (11, 'Camel', '2021-05-12', 7, 9);
 
 -- Visits
 INSERT INTO visits (id, pet_id, date, description) VALUES (1, 7, '2023-01-01', 'Rabies shot');

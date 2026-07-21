@@ -19,6 +19,7 @@
 		Plus
 	} from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
+	import { getOwnerAvatarSrc } from '$lib/utils/ownerAvatar';
 
 	let owner = $state<OwnerResponse | null>(null);
 	let loading = $state(true);
@@ -109,9 +110,11 @@
 				<Card.Header>
 					<div class="flex items-start justify-between">
 						<div class="flex items-center gap-4">
-							<div class="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-								<User class="h-8 w-8 text-primary" />
-							</div>
+							<img
+								src={getOwnerAvatarSrc(owner.id)}
+								alt={`${owner.firstName} ${owner.lastName}`}
+								class="h-16 w-16 rounded-full border object-cover"
+							/>
 							<div>
 								<Card.Title class="text-2xl">{owner.firstName} {owner.lastName}</Card.Title>
 								<Card.Description>Pet Owner</Card.Description>
